@@ -11,6 +11,10 @@ public class EndGame : MonoBehaviour
     public int P1NumberOfTracksLeft;
     public int P2NumberOfTracksLeft;
     public bool GameShouldEnd = false;
+    public GameObject P1ContentPnl;
+    public GameObject P2ContentPnl;
+    public Transform[] P1ChosenCards;
+    public Transform[] P2ChosenCards;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +38,26 @@ public class EndGame : MonoBehaviour
     
     public void EndOfGame()
     {
+        P1ChosenCards = P1ContentPnl.GetComponentsInChildren<Transform>();
+        foreach (Transform childTransform in P1ChosenCards)
+        {
+            DesCardScript desCardScript = childTransform.gameObject.GetComponent<DesCardScript>();
+            if (desCardScript != null)
+            {
+                int subtractInt = desCardScript.AmountToAdd;
+                playerMovement.PlayerScore -= subtractInt;
+            }
+        }
+        P2ChosenCards = P2ContentPnl.GetComponentsInChildren<Transform>();
+        foreach (Transform childTransform in P2ChosenCards)
+        {
+            DesCardScript desCardScript = childTransform.gameObject.GetComponent<DesCardScript>();
+            if (desCardScript != null)
+            {
+                int subtractInt = desCardScript.AmountToAdd;
+                pTwoMovement.Player2Score -= subtractInt;
+            }
+        }
         if (playerMovement.PlayerScore < pTwoMovement.Player2Score)
         {
             POneWinPnl.SetActive(true);
