@@ -26,13 +26,18 @@ public class PlayerTurn : MonoBehaviour
     private bool isContinueButtonVisible = false;
 
     private WaitForSeconds panelDisplayTime = new WaitForSeconds(5f);
+    public GameObject DCardsPnl1;
+    public GameObject DCardsPnl2;
+    public Button DrawBtn1;
+    public Button DrawBtn2;
+    public EndGame endGame;
 
     private void Start()
     {
         EnablePlayer(0); // Enable only player1 at the start
         UpdateContinueButtonVisibility();
     }
-
+  
     // Method called when the draw button is clicked
     public void DrawButtonClick()
     {
@@ -148,17 +153,37 @@ public class PlayerTurn : MonoBehaviour
     // Method called when the continue button is clicked
     public void ContinueButtonClick()
     {
-        totalClicks = 0;
-        EnableCardSlots();
-        DisableContinueButton();
+        if (endGame.GameShouldEnd && currentPlayerIndex == 1)
+        {
+            endGame.EndOfGame();
+        }
+        else
+        {
+            totalClicks = 0;
+            EnableCardSlots();
+            DisableContinueButton();
 
-        StartCoroutine(OpenPanelForDuration());
+            StartCoroutine(OpenPanelForDuration());
 
-        // Disable current player
-        DisablePlayer(currentPlayerIndex);
+            // Disable current player
+            DisablePlayer(currentPlayerIndex);
 
-        // Move to the next player
-        currentPlayerIndex = (currentPlayerIndex + 1) % players.Length;
+            // Move to the next player
+            currentPlayerIndex = (currentPlayerIndex + 1) % players.Length;
+            if (currentPlayerIndex == 0)
+            {
+                DCardsPnl1.SetActive(true);
+                DCardsPnl2.SetActive(false);
+                DrawBtn1.interactable = true;
+            }
+            if (currentPlayerIndex == 1)
+            {
+                DCardsPnl1.SetActive(false);
+                DCardsPnl2.SetActive(true);
+                DrawBtn2.interactable = true;
+            }
+        }
+        
 
         // Enable the next player
         EnablePlayer(currentPlayerIndex);
