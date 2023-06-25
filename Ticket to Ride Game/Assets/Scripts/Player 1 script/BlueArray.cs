@@ -8,8 +8,8 @@ public class BlueArray : MonoBehaviour
     public List<CardScript> player1BlueCards = new List<CardScript>(); // List for player 1's blue cards
     public List<CardScript> player2BlueCards = new List<CardScript>(); // List for player 2's blue cards
 
-    public TextMeshProUGUI player1CardCountText; // Reference to the TextMeshProUGUI component displaying the card count for player 1
-    public TextMeshProUGUI player2CardCountText; // Reference to the TextMeshProUGUI component displaying the card count for player 2
+    public TextMeshProUGUI player1CardCountText; // Reference to the text for player 1's cards 
+    public TextMeshProUGUI player2CardCountText;// Reference to the text for player 2's cards 
 
     // Start is called before the first frame update
     void Start()
@@ -24,26 +24,26 @@ public class BlueArray : MonoBehaviour
 
     }
 
-    // Method to add a card to the blue array of the specified player
+    // Method to add a card to the blue list of the specific player
     public void AddCard(CardScript card, int playerIndex)
     {
         if (playerIndex == 0)
         {
-            player1BlueCards.Add(card); // Add the card to player 1's blue card list
+            player1BlueCards.Add(card); // Adds the card to player 1's blue card list
             UpdateCardCount(player1CardCountText, player1BlueCards); // Update the card count for player 1
         }
         else if (playerIndex == 1)
         {
-            player2BlueCards.Add(card); // Add the card to player 2's blue card list
+            player2BlueCards.Add(card); // Adds the card to player 2's blue card list
             UpdateCardCount(player2CardCountText, player2BlueCards); // Update the card count for player 2
         }
     }
 
-    // Method to update the card count text for the specified player
+    // Method to update the card count text 
     private void UpdateCardCount(TextMeshProUGUI cardCountText, List<CardScript> cards)
     {
         int cardCount = cards.Count; // Get the card count from the blue card list
-        cardCountText.text = cardCount.ToString(); // Update the text component
+        cardCountText.text = cardCount.ToString(); // Update the text 
     }
 }
 

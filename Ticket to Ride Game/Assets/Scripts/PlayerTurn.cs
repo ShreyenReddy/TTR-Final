@@ -34,8 +34,17 @@ public class PlayerTurn : MonoBehaviour
 
     private void Start()
     {
-        EnablePlayer(0); // Enable only player 1 panel at the start
+        EnablePlayer(0); // Enables the player 1 panel at the start 
         UpdateContinueButtonVisibility();
+
+        // Adds four random cards to each player
+        for (int i = 0; i < players.Length; i++)
+        {
+            for (int j = 0; j < 4; j++)
+            {
+                AddRandomCardToPlayer(i);
+            }
+        }
     }
 
     // Method called when the draw button is clicked
@@ -54,37 +63,36 @@ public class PlayerTurn : MonoBehaviour
             // Get a random card from the cards array
             CardScript randomCard = GetRandomCard();
 
-            // Use the random card for further processing
             if (randomCard != null)
             {
                 string cardTypeName = randomCard.cardType.ToString();
                 Debug.Log(cardTypeName + " card drawn");
 
-                // Check the active state of the panel
+                
 
                 if (cardTypeName == "green")
                 {
-                    green.AddCard(randomCard, currentPlayerIndex); // Add the card to the green array
+                    green.AddCard(randomCard, currentPlayerIndex); // Add the card to the green list
                 }
                 else if (cardTypeName == "blue")
                 {
-                    blue.AddCard(randomCard, currentPlayerIndex); // Add the card to the blue array
+                    blue.AddCard(randomCard, currentPlayerIndex); // Add the card to the blue list
                 }
                 else if (cardTypeName == "wildcard")
                 {
-                    wild.AddCard(randomCard, currentPlayerIndex); // Add the card to the wild array
+                    wild.AddCard(randomCard, currentPlayerIndex); // Add the card to the wild list
                 }
                 else if (cardTypeName == "orange")
                 {
-                    orange.AddCard(randomCard, currentPlayerIndex); // Add the card to the orange array
+                    orange.AddCard(randomCard, currentPlayerIndex); // Add the card to the orange list
                 }
                 else if (cardTypeName == "red")
                 {
-                    red.AddCard(randomCard, currentPlayerIndex); // Add the card to the red array
+                    red.AddCard(randomCard, currentPlayerIndex); // Add the card to the red list
                 }
                 else if (cardTypeName == "pink")
                 {
-                    pink.AddCard(randomCard, currentPlayerIndex); // Add the card to the pink array
+                    pink.AddCard(randomCard, currentPlayerIndex); // Add the card to the pink list
                 }
             }
         }
@@ -93,7 +101,7 @@ public class PlayerTurn : MonoBehaviour
         Debug.Log("Card Drawn");
     }
 
-    // Method to retrieve a random card from the cards array
+    // Method to get a random card from the cards array
     public CardScript GetRandomCard()
     {
         if (cards.Length > 0)
@@ -101,7 +109,7 @@ public class PlayerTurn : MonoBehaviour
             int randomIndex = Random.Range(0, cards.Length);
             CardScript randomCard = cards[randomIndex];
 
-            // Remove the selected card from the array
+            // Removes the random card from the array and adds it into the list
             List<CardScript> remainingCards = new List<CardScript>(cards);
             remainingCards.RemoveAt(randomIndex);
             cards = remainingCards.ToArray();
@@ -250,7 +258,7 @@ public class PlayerTurn : MonoBehaviour
 
             if (cardTypeName == "wildcard")
             {
-                totalClicks = 2; // Treat wild card as 2 clicks
+                totalClicks = 2; // Treats the wild card as 2 clicks
             }
             else
             {
@@ -263,7 +271,7 @@ public class PlayerTurn : MonoBehaviour
                 EnableContinueButton();
             }
 
-            // Remove the card from itemSlots
+            // Remove the card from itemSlots array
             gameSlotManager.RemoveCard(clickedCard);
 
             // Remove the corresponding scriptable object from the Cards array
@@ -279,31 +287,70 @@ public class PlayerTurn : MonoBehaviour
                 }
             }
 
-            // Add the card to the corresponding array based on its type
+            // Add the card to the corresponding list based on its enum in the Cardtype
             if (cardTypeName == "green")
             {
-                green.AddCard(clickedCard, currentPlayerIndex); // Add the card to the green array
+                green.AddCard(clickedCard, currentPlayerIndex); // Add the card to the green list
             }
             else if (cardTypeName == "blue")
             {
-                blue.AddCard(clickedCard, currentPlayerIndex); // Add the card to the blue array
+                blue.AddCard(clickedCard, currentPlayerIndex); // Add the card to the blue list
             }
             else if (cardTypeName == "wildcard")
             {
-                wild.AddCard(clickedCard, currentPlayerIndex); // Add the card to the wild array
+                wild.AddCard(clickedCard, currentPlayerIndex); // Add the card to the wild list
             }
             else if (cardTypeName == "orange")
             {
-                orange.AddCard(clickedCard, currentPlayerIndex); // Add the card to the orange array
+                orange.AddCard(clickedCard, currentPlayerIndex); // Add the card to the orange list
             }
             else if (cardTypeName == "red")
             {
-                red.AddCard(clickedCard, currentPlayerIndex); // Add the card to the red array
+                red.AddCard(clickedCard, currentPlayerIndex); // Add the card to the red list
             }
             else if (cardTypeName == "pink")
             {
-                pink.AddCard(clickedCard, currentPlayerIndex); // Add the card to the pink array
+                pink.AddCard(clickedCard, currentPlayerIndex); // Add the card to the pink list
             }
         }
     }
+
+    // Method to add a random card to each player
+    private void AddRandomCardToPlayer(int playerIndex)
+    {
+        CardScript randomCard = GetRandomCard();
+
+        if (randomCard != null)
+        {
+            string cardTypeName = randomCard.cardType.ToString();
+            Debug.Log(cardTypeName + " card added to player " + (playerIndex + 1));
+
+            // Add the card to the corresponding list based on its enum in the Cardtype
+            if (cardTypeName == "green")
+            {
+                green.AddCard(randomCard, playerIndex); // Add the card to the green list
+            }
+            else if (cardTypeName == "blue")
+            {
+                blue.AddCard(randomCard, playerIndex); // Add the card to the blue list
+            }
+            else if (cardTypeName == "wildcard")
+            {
+                wild.AddCard(randomCard, playerIndex); // Add the card to the wild list
+            }
+            else if (cardTypeName == "orange")
+            {
+                orange.AddCard(randomCard, playerIndex); // Add the card to the orange list
+            }
+            else if (cardTypeName == "red")
+            {
+                red.AddCard(randomCard, playerIndex); // Add the card to the red list
+            }
+            else if (cardTypeName == "pink")
+            {
+                pink.AddCard(randomCard, playerIndex); // Add the card to the pink list
+            }
+        }
+    }
+
 }

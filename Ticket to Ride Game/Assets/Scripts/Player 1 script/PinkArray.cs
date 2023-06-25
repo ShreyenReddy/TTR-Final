@@ -8,8 +8,8 @@ public class PinkArray : MonoBehaviour
     public List<CardScript> player1PinkCards = new List<CardScript>(); // List for player 1's pink cards
     public List<CardScript> player2PinkCards = new List<CardScript>(); // List for player 2's pink cards
 
-    public TextMeshProUGUI player1CardCountText; // Reference to the TextMeshProUGUI component displaying the card count for player 1
-    public TextMeshProUGUI player2CardCountText; // Reference to the TextMeshProUGUI component displaying the card count for player 2
+    public TextMeshProUGUI player1CardCountText; // Reference to the text for player 1's cards 
+    public TextMeshProUGUI player2CardCountText; // Reference to the text for player 2's cards 
 
     // Start is called before the first frame update
     void Start()
@@ -24,25 +24,25 @@ public class PinkArray : MonoBehaviour
 
     }
 
-    // Method to add a card to the pink array of the specified player
+    // Method to add a card to the pink list of the specific player
     public void AddCard(CardScript card, int playerIndex)
     {
         if (playerIndex == 0)
         {
-            player1PinkCards.Add(card); // Add the card to player 1's pink card list
+            player1PinkCards.Add(card); // Adds the card to player 1's pink card list
             UpdateCardCount(player1CardCountText, player1PinkCards); // Update the card count for player 1
         }
         else if (playerIndex == 1)
         {
-            player2PinkCards.Add(card); // Add the card to player 2's pink card list
+            player2PinkCards.Add(card); // Adds the card to player 2's pink card list
             UpdateCardCount(player2CardCountText, player2PinkCards); // Update the card count for player 2
         }
     }
 
-    // Method to update the card count text for the specified player
+    // Method to update the card count text 
     private void UpdateCardCount(TextMeshProUGUI cardCountText, List<CardScript> cards)
     {
         int cardCount = cards.Count; // Get the card count from the pink card list
-        cardCountText.text = cardCount.ToString(); // Update the text component
+        cardCountText.text = cardCount.ToString(); // Update the text 
     }
 }
