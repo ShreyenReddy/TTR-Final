@@ -170,7 +170,7 @@ public class PlayerTurn : MonoBehaviour
 
             // Move to the next player
             currentPlayerIndex = (currentPlayerIndex + 1) % players.Length;
-            if (currentPlayerIndex == 0)
+            /*if (currentPlayerIndex == 0)
             {
                 DCardsPnl1.SetActive(true);
                 DCardsPnl2.SetActive(false);
@@ -181,7 +181,7 @@ public class PlayerTurn : MonoBehaviour
                 DCardsPnl1.SetActive(false);
                 DCardsPnl2.SetActive(true);
                 DrawBtn2.interactable = true;
-            }
+            }*/
         }
         
 
