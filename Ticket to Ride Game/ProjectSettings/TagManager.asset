@@ -5,6 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Border
+  - BlueCard
+  - GreenCard
+  - OrangeCard
+  - PinkCard
+  - RedCard
+  - WildCard
   layers:
   - Default
   - TransparentFX

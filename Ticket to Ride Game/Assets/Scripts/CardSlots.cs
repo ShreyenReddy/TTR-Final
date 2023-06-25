@@ -2,27 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class CardSlots : MonoBehaviour
 {
     public GameObject GameSlot;
-    public CardScript[] itemSlots = new CardScript[5]; // Array for Cards
-    public Image[] slotImages = new Image[5]; // Array for Card Images
+    public CardScript[] itemSlots = new CardScript[4]; // Array for Cards
+    public Image[] slotImages = new Image[4]; // Array for Card Images
+    public PlayerTurn playerTurns;
 
-    private int[] clickCounts = new int[5]; // Array to store click counts
+    private int[] clickCounts = new int[4]; // Array to store click counts
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        //Uses the DrawScript to re-add cards into the CardSlots
+        playerTurns = GetComponent<PlayerTurn>();
+
+        if (itemSlots.All(slot => slot == null))
+        {
+            FillItemSlotsFromCards();
+        }
+
         for (int i = 0; i < itemSlots.Length; i++)
         {
-            if (itemSlots[i] == null)
-            {
-                //itemSlots[i] = DrawScript.Draw();
-            }
-
-            // Used for setting the cards image
             if (itemSlots[i] != null)
             {
                 slotImages[i] = GameSlot.transform.GetChild(i).GetComponent<Image>();
@@ -32,5 +33,91 @@ public class CardSlots : MonoBehaviour
                 Debug.Log("Enum Type at index " + i + ": " + enumType);
             }
         }
+
+        StartCoroutine(CheckItemSlots());
     }
+
+    private IEnumerator CheckItemSlots()
+    {
+        while (true)
+        {
+            for (int i = 0; i < itemSlots.Length; i++)
+            {
+                if (itemSlots[i] == null)
+                {
+                    AddRandomCard(i);
+                }
+            }
+            yield return null;
+        }
+    }
+
+    private void FillItemSlotsFromCards()
+    {
+        CardScript[] cards = playerTurns.cards;
+
+        for (int i = 0; i < itemSlots.Length; i++)
+        {
+            if (cards.Length > 0)
+            {
+                itemSlots[i] = GetRandomCardFromCards(ref cards);
+            }
+            else
+            {
+                Debug.LogWarning("No more cards available to fill itemSlots array.");
+                break;
+            }
+        }
+    }
+
+    private CardScript GetRandomCardFromCards(ref CardScript[] cards)
+    {
+        if (cards.Length > 0)
+        {
+            int randomIndex = Random.Range(0, cards.Length);
+            CardScript randomCard = cards[randomIndex];
+
+            // Remove the selected card from the array
+            List<CardScript> remainingCards = new List<CardScript>(cards);
+            remainingCards.RemoveAt(randomIndex);
+            cards = remainingCards.ToArray();
+
+            return randomCard;
+        }
+
+        return null;
+    }
+
+    private void AddRandomCard(int index)
+    {
+        CardScript[] cards = playerTurns.cards;
+
+        if (cards.Length > 0)
+        {
+            itemSlots[index] = GetRandomCardFromCards(ref cards);
+            slotImages[index].sprite = itemSlots[index].CardImage;
+        }
+        else
+        {
+            Debug.LogWarning("No more cards available to add to itemSlots array.");
+        }
+    }
+
+    public void RemoveCard(CardScript card)
+    {
+        for (int i = 0; i < itemSlots.Length; i++)
+        {
+            if (itemSlots[i] == card)
+            {
+                itemSlots[i] = null;
+                slotImages[i].sprite = null; // Clear the slot image
+                return;
+            }
+        }
+    }
+
+
 }
+
+
+
