@@ -11,7 +11,13 @@ using Color = System.Drawing.Color;
 
 public class TrainCarColour : MonoBehaviour
 {
-    public int TrainCarsAmt;
+    private int[,] TrainCarsAmt= new int [6,5];
+    public int RedTrainCarAmt;
+    public int BlueTrainCarAmt;
+    public int GreenTrainCarAmt;
+    public int YellowTrainCarAmt;
+    public int BlackTrainCarAmt;
+    
     public TMP_Text TrainTokensTxt;
     public Button TrainCarSlot;
     public GameObject RedTC;
@@ -19,14 +25,22 @@ public class TrainCarColour : MonoBehaviour
     public GameObject GreenTC;
     public GameObject YellowTC;
     public GameObject BlackTC;
+    
+    
+    
+    
 
 
     void Start()
     {
-        TrainCarsAmt = 45;
-        TrainTokensTxt = GameObject.Find("TrainTokensTxt").GetComponent<TextMeshProUGUI>();
+        TrainCarsAmt[1,1]=RedTrainCarAmt=45;
+        TrainCarsAmt[2, 1] = BlueTrainCarAmt = 45;
+        TrainCarsAmt[3, 1] = GreenTrainCarAmt = 45;
+        TrainCarsAmt[4, 1] = YellowTrainCarAmt = 45;
+        TrainCarsAmt[5, 1] = BlackTrainCarAmt = 45;
+        
     }
-    void Update()
+    void Awake()
     {
         StartCoroutine(HideandShow(2f));
         
@@ -43,25 +57,42 @@ public class TrainCarColour : MonoBehaviour
             YellowTC.SetActive(false);
             BlackTC.SetActive(false);
             
+
+
         }
     }
     
+    public void AmtOfRedTrainsButton()
+    {
+        if((RedTrainCarAmt<=45))
+        {
+            RedTrainCarAmt --;
+            TrainTokensTxt = GameObject.Find("TrainTokensTxt").GetComponent<TextMeshProUGUI>();
+            TrainTokensTxt.text = "" + RedTrainCarAmt;
+        }
+
+    }
+
     public void OnRedButtonClick()
     {
-
         {
-            
-            TrainTokensTxt.text = "" + TrainCarsAmt;
             ColorBlock cb = TrainCarSlot.colors;
             cb.normalColor = UnityEngine.Color.red;
             cb.highlightedColor = UnityEngine.Color.red;
             cb.pressedColor = UnityEngine.Color.red;
             TrainCarSlot.colors = cb;
-            TrainCarsAmt = TrainCarsAmt- 1;
         }
-        
     }
+     public void AmtOfBlueTrainsButton()
+        {
+            if((BlueTrainCarAmt<=45))
+            {
+                BlueTrainCarAmt --;
+                TrainTokensTxt = GameObject.Find("TrainTokensTxt").GetComponent<TextMeshProUGUI>();
+                TrainTokensTxt.text = "" + BlueTrainCarAmt;
+            }
     
+        }
     public void OnBlueButtonClick()
     {
         
@@ -74,7 +105,16 @@ public class TrainCarColour : MonoBehaviour
             
         }
     }
-    
+    public void AmtOfGreenTrainsButton()
+    {
+        if((GreenTrainCarAmt<=45))
+        {
+            GreenTrainCarAmt --;
+            TrainTokensTxt = GameObject.Find("TrainTokensTxt").GetComponent<TextMeshProUGUI>();
+            TrainTokensTxt.text = "" + GreenTrainCarAmt;
+        }
+
+    }
     public void OnGreenButtonClick()
     {
         
@@ -87,6 +127,17 @@ public class TrainCarColour : MonoBehaviour
             
         }
     }
+    public void AmtOfYellowTrainsButton()
+    {
+        if((YellowTrainCarAmt<=45))
+        {
+            YellowTrainCarAmt --;
+            TrainTokensTxt = GameObject.Find("TrainTokensTxt").GetComponent<TextMeshProUGUI>();
+            TrainTokensTxt.text = "" + YellowTrainCarAmt;
+        }
+
+    }
+
     public void OnYellowButtonClick()
     {
         
@@ -99,6 +150,17 @@ public class TrainCarColour : MonoBehaviour
             
         }
     }
+    public void AmtOfBlackTrainsButton()
+    {
+        if((BlackTrainCarAmt<=45))
+        {
+            BlackTrainCarAmt --;
+            TrainTokensTxt = GameObject.Find("TrainTokensTxt").GetComponent<TextMeshProUGUI>();
+            TrainTokensTxt.text = "" + BlackTrainCarAmt;
+        }
+
+    }
+
     public void OnBlackButtonClick()
     {
         
@@ -117,3 +179,4 @@ public class TrainCarColour : MonoBehaviour
 
    
 }
+
