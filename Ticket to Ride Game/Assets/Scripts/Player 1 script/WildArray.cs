@@ -5,17 +5,14 @@ using TMPro;
 
 public class WildArray : MonoBehaviour
 {
-    public List<CardScript> player1WildCards = new List<CardScript>(); // List for player 1's wild cards
-    public List<CardScript> player2WildCards = new List<CardScript>(); // List for player 2's wild cards
+    List<CardScript> wild = new List<CardScript>();
 
-    public TextMeshProUGUI player1CardCountText; // Reference to the TextMeshProUGUI component displaying the card count for player 1
-    public TextMeshProUGUI player2CardCountText; // Reference to the TextMeshProUGUI component displaying the card count for player 2
+    public TextMeshProUGUI cardCountText; // Reference to the TextMeshProUGUI component displaying the card count
 
     // Start is called before the first frame update
     void Start()
     {
-        UpdateCardCount(player1CardCountText, player1WildCards); // Update the card count for player 1
-        UpdateCardCount(player2CardCountText, player2WildCards); // Update the card count for player 2
+        UpdateCardCount();
     }
 
     // Update is called once per frame
@@ -24,25 +21,18 @@ public class WildArray : MonoBehaviour
 
     }
 
-    // Method to add a card to the wild array of the specified player
-    public void AddCard(CardScript card, int playerIndex)
+    // Method to add a card to the green array
+    public void AddCard(CardScript card)
     {
-        if (playerIndex == 0)
-        {
-            player1WildCards.Add(card); // Add the card to player 1's wild card list
-            UpdateCardCount(player1CardCountText, player1WildCards); // Update the card count for player 1
-        }
-        else if (playerIndex == 1)
-        {
-            player2WildCards.Add(card); // Add the card to player 2's wild card list
-            UpdateCardCount(player2CardCountText, player2WildCards); // Update the card count for player 2
-        }
+        wild.Add(card); // Add the card to the list
+
+        UpdateCardCount(); // Update the card count after adding a card
     }
 
-    // Method to update the card count text for the specified player
-    private void UpdateCardCount(TextMeshProUGUI cardCountText, List<CardScript> cards)
+    // Method to update the card count text
+    private void UpdateCardCount()
     {
-        int cardCount = cards.Count; // Get the card count from the wild card list
+        int cardCount = wild.Count; // Get the card count from the green list
         cardCountText.text = cardCount.ToString(); // Update the text component
     }
 }

@@ -5,17 +5,14 @@ using TMPro;
 
 public class OrangeArray : MonoBehaviour
 {
-    public List<CardScript> player1OrangeCards = new List<CardScript>(); // List for player 1's orange cards
-    public List<CardScript> player2OrangeCards = new List<CardScript>(); // List for player 2's orange cards
+    List<CardScript> orange = new List<CardScript>();
 
-    public TextMeshProUGUI player1CardCountText; // Reference to the TextMeshProUGUI component displaying the card count for player 1
-    public TextMeshProUGUI player2CardCountText; // Reference to the TextMeshProUGUI component displaying the card count for player 2
+    public TextMeshProUGUI cardCountText; // Reference to the TextMeshProUGUI component displaying the card count
 
     // Start is called before the first frame update
     void Start()
     {
-        UpdateCardCount(player1CardCountText, player1OrangeCards); // Update the card count for player 1
-        UpdateCardCount(player2CardCountText, player2OrangeCards); // Update the card count for player 2
+        UpdateCardCount();
     }
 
     // Update is called once per frame
@@ -24,25 +21,18 @@ public class OrangeArray : MonoBehaviour
 
     }
 
-    // Method to add a card to the orange array of the specified player
-    public void AddCard(CardScript card, int playerIndex)
+    // Method to add a card to the green array
+    public void AddCard(CardScript card)
     {
-        if (playerIndex == 0)
-        {
-            player1OrangeCards.Add(card); // Add the card to player 1's orange card list
-            UpdateCardCount(player1CardCountText, player1OrangeCards); // Update the card count for player 1
-        }
-        else if (playerIndex == 1)
-        {
-            player2OrangeCards.Add(card); // Add the card to player 2's orange card list
-            UpdateCardCount(player2CardCountText, player2OrangeCards); // Update the card count for player 2
-        }
+        orange.Add(card); // Add the card to the list
+
+        UpdateCardCount(); // Update the card count after adding a card
     }
 
-    // Method to update the card count text for the specified player
-    private void UpdateCardCount(TextMeshProUGUI cardCountText, List<CardScript> cards)
+    // Method to update the card count text
+    private void UpdateCardCount()
     {
-        int cardCount = cards.Count; // Get the card count from the orange card list
+        int cardCount = orange.Count; // Get the card count from the green list
         cardCountText.text = cardCount.ToString(); // Update the text component
     }
 }
