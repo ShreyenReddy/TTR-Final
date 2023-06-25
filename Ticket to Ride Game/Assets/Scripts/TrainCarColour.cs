@@ -11,7 +11,7 @@ using Color = System.Drawing.Color;
 
 public class TrainCarColour : MonoBehaviour
 {
-    private int[,] TrainCarsAmt = new int [6, 5];
+    private int[,] TrainCarsAmt = new int[6, 5];
     public int RedTrainCarAmt;
     public int BlueTrainCarAmt;
     public int GreenTrainCarAmt;
@@ -27,6 +27,7 @@ public class TrainCarColour : MonoBehaviour
     public GameObject BlackTC;
 
     public GameObject LastRoundPanelAppear;
+    
 
 
 
@@ -40,7 +41,7 @@ public class TrainCarColour : MonoBehaviour
         TrainCarsAmt[3, 1] = GreenTrainCarAmt = 45;
         TrainCarsAmt[4, 1] = YellowTrainCarAmt = 45;
         TrainCarsAmt[5, 1] = BlackTrainCarAmt = 45;
-
+       
     }
 
     void Awake()
@@ -185,7 +186,7 @@ public class TrainCarColour : MonoBehaviour
 
     public void LastRoundPanel()
     {
-        if (RedTrainCarAmt <= 2 )
+        if (RedTrainCarAmt <= 2)
         {
             StartCoroutine(LastPanelActivate(2f));
 
@@ -207,11 +208,11 @@ public class TrainCarColour : MonoBehaviour
         }
     }
 
-
-
-
-
+   
 
 
 }
+
+
+
 

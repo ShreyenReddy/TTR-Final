@@ -5,14 +5,17 @@ using TMPro;
 
 public class PinkArray : MonoBehaviour
 {
-    List<CardScript> pink = new List<CardScript>();
+    public List<CardScript> player1PinkCards = new List<CardScript>(); // List for player 1's pink cards
+    public List<CardScript> player2PinkCards = new List<CardScript>(); // List for player 2's pink cards
 
-    public TextMeshProUGUI cardCountText; // Reference to the TextMeshProUGUI component displaying the card count
+    public TextMeshProUGUI player1CardCountText; // Reference to the TextMeshProUGUI component displaying the card count for player 1
+    public TextMeshProUGUI player2CardCountText; // Reference to the TextMeshProUGUI component displaying the card count for player 2
 
     // Start is called before the first frame update
     void Start()
     {
-        UpdateCardCount();
+        UpdateCardCount(player1CardCountText, player1PinkCards); // Update the card count for player 1
+        UpdateCardCount(player2CardCountText, player2PinkCards); // Update the card count for player 2
     }
 
     // Update is called once per frame
@@ -21,18 +24,25 @@ public class PinkArray : MonoBehaviour
 
     }
 
-    // Method to add a card to the green array
-    public void AddCard(CardScript card)
+    // Method to add a card to the pink array of the specified player
+    public void AddCard(CardScript card, int playerIndex)
     {
-        pink.Add(card); // Add the card to the list
-
-        UpdateCardCount(); // Update the card count after adding a card
+        if (playerIndex == 0)
+        {
+            player1PinkCards.Add(card); // Add the card to player 1's pink card list
+            UpdateCardCount(player1CardCountText, player1PinkCards); // Update the card count for player 1
+        }
+        else if (playerIndex == 1)
+        {
+            player2PinkCards.Add(card); // Add the card to player 2's pink card list
+            UpdateCardCount(player2CardCountText, player2PinkCards); // Update the card count for player 2
+        }
     }
 
-    // Method to update the card count text
-    private void UpdateCardCount()
+    // Method to update the card count text for the specified player
+    private void UpdateCardCount(TextMeshProUGUI cardCountText, List<CardScript> cards)
     {
-        int cardCount = pink.Count; // Get the card count from the green list
+        int cardCount = cards.Count; // Get the card count from the pink card list
         cardCountText.text = cardCount.ToString(); // Update the text component
     }
 }
