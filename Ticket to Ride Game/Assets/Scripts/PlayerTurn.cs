@@ -37,7 +37,7 @@ public class PlayerTurn : MonoBehaviour
         EnablePlayer(0); // Enable only player1 at the start
         UpdateContinueButtonVisibility();
     }
-  
+
     // Method called when the draw button is clicked
     public void DrawButtonClick()
     {
@@ -61,32 +61,31 @@ public class PlayerTurn : MonoBehaviour
                 Debug.Log(cardTypeName + " card drawn");
 
                 // Check the active state of the panel
-               
-                    if (cardTypeName == "green")
-                    {
-                        green.AddCard(randomCard); // Add the card to the green array
-                    }
-                    else if (cardTypeName == "blue")
-                    {
-                        blue.AddCard(randomCard); // Add the card to the blue array
-                    }
-                    else if (cardTypeName == "wildcard")
-                    {
-                        wild.AddCard(randomCard); // Add the card to the wild array
-                    }
-                    else if (cardTypeName == "orange")
-                    {
-                        orange.AddCard(randomCard); // Add the card to the orange array
-                    }
-                    else if (cardTypeName == "red")
-                    {
-                        red.AddCard(randomCard); // Add the card to the red array
-                    }
-                    else if (cardTypeName == "pink")
-                    {
-                        pink.AddCard(randomCard); // Add the card to the pink array
-                    }
-                
+
+                if (cardTypeName == "green")
+                {
+                    green.AddCard(randomCard, currentPlayerIndex); // Add the card to the green array
+                }
+                else if (cardTypeName == "blue")
+                {
+                    blue.AddCard(randomCard, currentPlayerIndex); // Add the card to the blue array
+                }
+                else if (cardTypeName == "wildcard")
+                {
+                    wild.AddCard(randomCard, currentPlayerIndex); // Add the card to the wild array
+                }
+                else if (cardTypeName == "orange")
+                {
+                    orange.AddCard(randomCard, currentPlayerIndex); // Add the card to the orange array
+                }
+                else if (cardTypeName == "red")
+                {
+                    red.AddCard(randomCard, currentPlayerIndex); // Add the card to the red array
+                }
+                else if (cardTypeName == "pink")
+                {
+                    pink.AddCard(randomCard, currentPlayerIndex); // Add the card to the pink array
+                }
             }
         }
 
@@ -183,7 +182,7 @@ public class PlayerTurn : MonoBehaviour
                 DrawBtn2.interactable = true;
             }
         }
-        
+
 
         // Enable the next player
         EnablePlayer(currentPlayerIndex);
@@ -283,29 +282,28 @@ public class PlayerTurn : MonoBehaviour
             // Add the card to the corresponding array based on its type
             if (cardTypeName == "green")
             {
-                green.AddCard(clickedCard); // Add the card to the green array
+                green.AddCard(clickedCard, currentPlayerIndex); // Add the card to the green array
             }
             else if (cardTypeName == "blue")
             {
-                blue.AddCard(clickedCard); // Add the card to the blue array
+                blue.AddCard(clickedCard, currentPlayerIndex); // Add the card to the blue array
             }
             else if (cardTypeName == "wildcard")
             {
-                wild.AddCard(clickedCard); // Add the card to the wild array
+                wild.AddCard(clickedCard, currentPlayerIndex); // Add the card to the wild array
             }
             else if (cardTypeName == "orange")
             {
-                orange.AddCard(clickedCard); // Add the card to the orange array
+                orange.AddCard(clickedCard, currentPlayerIndex); // Add the card to the orange array
             }
             else if (cardTypeName == "red")
             {
-                red.AddCard(clickedCard); // Add the card to the red array
+                red.AddCard(clickedCard, currentPlayerIndex); // Add the card to the red array
             }
             else if (cardTypeName == "pink")
             {
-                pink.AddCard(clickedCard); // Add the card to the pink array
+                pink.AddCard(clickedCard, currentPlayerIndex); // Add the card to the pink array
             }
         }
     }
-
 }
