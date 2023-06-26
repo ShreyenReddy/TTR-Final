@@ -190,30 +190,25 @@ public class TrainCarColour : MonoBehaviour
 
     public void LastRoundPanel()
     {
-        if (RedTrainCarAmt <= 2)
+        if (!HasbeenShowed)
         {
-            StartCoroutine(LastPanelActivate(2f));
-
-        }
-
-        if (BlueTrainCarAmt <= 2)
-        {
-            StartCoroutine(LastPanelActivate(2f));
-        }
-    }
-    IEnumerator LastPanelActivate(float delay)
-    {
-        while (true)
-        {
-            if (!HasbeenShowed)
+            if (RedTrainCarAmt <= 2)
             {
                 LastRoundPanelAppear.SetActive(true);
-                yield return new WaitForSecondsRealtime(5);
-                LastRoundPanelAppear.SetActive(false);
-                HasbeenShowed = true;
+            }
+
+            if (BlueTrainCarAmt <= 2)
+            {
+                LastRoundPanelAppear.SetActive(true);
             }
         }
+        else
+        {
+            LastRoundPanelAppear.SetActive(false);
+        }
+        
     }
+    
 
    
 
