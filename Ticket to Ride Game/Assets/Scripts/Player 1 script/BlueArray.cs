@@ -5,6 +5,8 @@ using TMPro;
 
 public class BlueArray : MonoBehaviour
 {
+    public int player2BlueCardCount; 
+
     public int BlueCardsInt;
     public List<CardScript> player1BlueCards = new List<CardScript>(); // List for player 1's blue cards
     public List<CardScript> player2BlueCards = new List<CardScript>(); // List for player 2's blue cards
@@ -15,6 +17,7 @@ public class BlueArray : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         UpdateCardCount(player1CardCountText, player1BlueCards); // Update the card count for player 1
         UpdateCardCount(player2CardCountText, player2BlueCards); // Update the card count for player 2
     }
@@ -22,8 +25,8 @@ public class BlueArray : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(BlueCardsInt);
-
+        //player2BlueCardCount = player2BlueCards.Count;
+        Debug.Log(player2BlueCards.Count);
     }
 
     // Method to add a card to the blue list of the specific player

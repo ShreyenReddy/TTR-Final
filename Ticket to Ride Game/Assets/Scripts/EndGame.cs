@@ -61,7 +61,7 @@ public class EndGame : MonoBehaviour
                 pTwoMovement.Player2Score -= subtractInt;
             }
         }
-        if (playerMovement.PlayerScore < pTwoMovement.Player2Score)
+        if (playerMovement.PlayerScore > pTwoMovement.Player2Score)
         {
             POneWinPnl.SetActive(true);
         }
