@@ -6,6 +6,7 @@ using TMPro;
 
 public class GreenArray   : MonoBehaviour
 {
+    public int GreenCardsInt;
     public List<CardScript> player1GreenCards = new List<CardScript>(); // List for player 1's green cards
     public List<CardScript> player2GreenCards = new List<CardScript>(); // List for player 2's green cards
 
@@ -43,8 +44,8 @@ public class GreenArray   : MonoBehaviour
     // Method to update the card count text 
     private void UpdateCardCount(TextMeshProUGUI cardCountText, List<CardScript> cards)
     {
-        int cardCount = cards.Count; // Get the card count from the green card list
-        cardCountText.text = cardCount.ToString(); // Update the text 
+        GreenCardsInt = cards.Count; // Get the card count from the green card list
+        cardCountText.text = GreenCardsInt.ToString(); // Update the text 
     }
 }
 

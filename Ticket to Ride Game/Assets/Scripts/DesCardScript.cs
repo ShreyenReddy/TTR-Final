@@ -19,10 +19,12 @@ public class DesCardScript : MonoBehaviour
     public Transform[] DrawPanelChildren;
     public Transform[] DrawPanelChildren2;
     public GameObject P2DesPnl;
+    public PlayerTurn playerTurn;
 
     // Start is called before the first frame update
     void Start()
     {
+        playerTurn = GameObject.Find("Game Manager").GetComponent<PlayerTurn>();
         DrawPanel1 = GameObject.Find("DestinationDraw");
         DrawPanel2 = GameObject.Find("DestinationDraw2");
         ContentPanel = GameObject.Find("Content");
@@ -60,6 +62,8 @@ public class DesCardScript : MonoBehaviour
                         Destroy(f.gameObject);
                     }
                 }
+
+                playerTurn.EnableContinueButton();
             }
         }
         else
@@ -82,6 +86,7 @@ public class DesCardScript : MonoBehaviour
                         Destroy(f.gameObject);
                     }
                 }
+                playerTurn.EnableContinueButton();
             }
         }        
     }

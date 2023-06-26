@@ -136,7 +136,7 @@ public class PlayerTurn : MonoBehaviour
     }
 
     // Enable the continue button and make it visible
-    private void EnableContinueButton()
+    public void EnableContinueButton()
     {
         continueButton.interactable = true;
         if (!isContinueButtonVisible)

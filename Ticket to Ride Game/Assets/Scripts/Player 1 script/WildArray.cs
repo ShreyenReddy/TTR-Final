@@ -5,6 +5,7 @@ using TMPro;
 
 public class WildArray : MonoBehaviour
 {
+    public int WildCardInt;
     public List<CardScript> player1WildCards = new List<CardScript>(); // List for player 1's wild cards
     public List<CardScript> player2WildCards = new List<CardScript>(); // List for player 2's wild cards
 
@@ -42,7 +43,7 @@ public class WildArray : MonoBehaviour
     // Method to update the card count text 
     private void UpdateCardCount(TextMeshProUGUI cardCountText, List<CardScript> cards)
     {
-        int cardCount = cards.Count; // Get the card count from the wild card list
-        cardCountText.text = cardCount.ToString(); // Update the text 
+        WildCardInt = cards.Count; // Get the card count from the wild card list
+        cardCountText.text = WildCardInt.ToString(); // Update the text 
     }
 }

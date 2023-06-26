@@ -11,6 +11,7 @@ TagManager:
   - PinkCard
   - RedCard
   - WildCard
+  - CardMinus
   layers:
   - Default
   - TransparentFX

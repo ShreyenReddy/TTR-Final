@@ -5,6 +5,7 @@ using TMPro;
 
 public class RedArray : MonoBehaviour
 {
+    public int RedCardInt;
     public List<CardScript> player1RedCards = new List<CardScript>(); // List for player 1's red cards
     public List<CardScript> player2RedCards = new List<CardScript>(); // List for player 2's red cards
 
@@ -41,7 +42,7 @@ public class RedArray : MonoBehaviour
     // Method to update the card count text 
     private void UpdateCardCount(TextMeshProUGUI cardCountText, List<CardScript> cards)
     {
-        int cardCount = cards.Count; // Get the card count from the red card list
-        cardCountText.text = cardCount.ToString(); // Update the text 
+        RedCardInt = cards.Count; // Get the card count from the red card list
+        cardCountText.text = RedCardInt.ToString(); // Update the text 
     }
 }

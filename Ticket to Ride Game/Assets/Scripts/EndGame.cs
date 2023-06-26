@@ -15,17 +15,20 @@ public class EndGame : MonoBehaviour
     public GameObject P2ContentPnl;
     public Transform[] P1ChosenCards;
     public Transform[] P2ChosenCards;
+
+    public TrainCarColour trainCarColour;
     // Start is called before the first frame update
     void Start()
     {
-        P1NumberOfTracksLeft = 45;
-        P2NumberOfTracksLeft = 45;
+       
 
     }
 
     // Update is called once per frame
     void Update()
     {
+        P1NumberOfTracksLeft = trainCarColour.RedTrainCarAmt;
+        P2NumberOfTracksLeft = trainCarColour.BlueTrainCarAmt;
         if (P1NumberOfTracksLeft == 0 || P1NumberOfTracksLeft == 1 || P1NumberOfTracksLeft == 2)
         {
             GameShouldEnd = true;

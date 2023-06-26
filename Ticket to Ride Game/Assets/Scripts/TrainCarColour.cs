@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
@@ -11,7 +12,7 @@ using Color = System.Drawing.Color;
 
 public class TrainCarColour : MonoBehaviour
 {
-    private int[,] TrainCarsAmt = new int[6, 5];
+    //public int[,] TrainCarsAmt = new int[6, 5];
     public int RedTrainCarAmt;
     public int BlueTrainCarAmt;
     public int GreenTrainCarAmt;
@@ -27,6 +28,7 @@ public class TrainCarColour : MonoBehaviour
     public GameObject BlackTC;
 
     public GameObject LastRoundPanelAppear;
+    public bool HasbeenShowed = false;
     
 
 
@@ -36,12 +38,14 @@ public class TrainCarColour : MonoBehaviour
 
     void Start()
     {
-        TrainCarsAmt[1, 1] = RedTrainCarAmt = 45;
+        /*TrainCarsAmt[1, 1] = RedTrainCarAmt = 45;
         TrainCarsAmt[2, 1] = BlueTrainCarAmt = 45;
         TrainCarsAmt[3, 1] = GreenTrainCarAmt = 45;
         TrainCarsAmt[4, 1] = YellowTrainCarAmt = 45;
-        TrainCarsAmt[5, 1] = BlackTrainCarAmt = 45;
-       
+        TrainCarsAmt[5, 1] = BlackTrainCarAmt = 45;*/
+        RedTrainCarAmt = 45;
+        BlueTrainCarAmt = 45;
+
     }
 
     void Awake()
@@ -201,10 +205,13 @@ public class TrainCarColour : MonoBehaviour
     {
         while (true)
         {
-            LastRoundPanelAppear.SetActive(true);
-            yield return new WaitForSecondsRealtime(5);
-            LastRoundPanelAppear.SetActive(false);
-
+            if (!HasbeenShowed)
+            {
+                LastRoundPanelAppear.SetActive(true);
+                yield return new WaitForSecondsRealtime(5);
+                LastRoundPanelAppear.SetActive(false);
+                HasbeenShowed = true;
+            }
         }
     }
 

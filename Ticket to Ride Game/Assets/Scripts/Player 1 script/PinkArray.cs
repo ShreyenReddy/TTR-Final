@@ -5,6 +5,7 @@ using TMPro;
 
 public class PinkArray : MonoBehaviour
 {
+    public int PinkCardInt;
     public List<CardScript> player1PinkCards = new List<CardScript>(); // List for player 1's pink cards
     public List<CardScript> player2PinkCards = new List<CardScript>(); // List for player 2's pink cards
 
@@ -42,7 +43,7 @@ public class PinkArray : MonoBehaviour
     // Method to update the card count text 
     private void UpdateCardCount(TextMeshProUGUI cardCountText, List<CardScript> cards)
     {
-        int cardCount = cards.Count; // Get the card count from the pink card list
-        cardCountText.text = cardCount.ToString(); // Update the text 
+        PinkCardInt = cards.Count; // Get the card count from the pink card list
+        cardCountText.text = PinkCardInt.ToString(); // Update the text 
     }
 }

@@ -3,13 +3,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using TMPro;
 
 public class DragItems : MonoBehaviour
 {
-    public Rigidbody2D player;
-    public Rigidbody2D board;
-    public GameObject ReturnPlayer;
+    public Rigidbody2D BlueTrainCard;
+    public Rigidbody2D GreenTrainCard;
+    public Rigidbody2D OrangeTrainCard;
+    public Rigidbody2D PinkTrainCard;
+    public Rigidbody2D RedTrainCard;
+    public Rigidbody2D WildCard;
+    public BlueArray blueArray;
+    public TextMeshProUGUI BlueIntTxt;
+    public Vector2 StartPos;
+    public GameObject BlueCard;
+
     Vector2 difference = Vector2.zero;
+
+    private void Start()
+    {
+        BlueCard = gameObject;
+        StartPos = BlueCard.transform.position;
+    }
 
     private void OnMouseDown()
     {
@@ -17,21 +32,25 @@ public class DragItems : MonoBehaviour
 
     }
 
+    private void OnMouseUp()
+    {
+        BlueCard.transform.position = StartPos;
+    }
+
     private void OnMouseDrag()
     {
         transform.position = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) - difference;
+        
     }
 
     public void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.CompareTag("Border"))
+        if (col.gameObject.CompareTag("CardMinus"))
         {
-            ReturnPlayer.SetActive(true);
-           
-            Debug.Log("Player is out of bounds");
+            blueArray.BlueCardsInt --;
+            BlueIntTxt.text = blueArray.BlueCardsInt.ToString();
+
         }
         
     }
-
-    
 }

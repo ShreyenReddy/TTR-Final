@@ -5,6 +5,7 @@ using TMPro;
 
 public class BlueArray : MonoBehaviour
 {
+    public int BlueCardsInt;
     public List<CardScript> player1BlueCards = new List<CardScript>(); // List for player 1's blue cards
     public List<CardScript> player2BlueCards = new List<CardScript>(); // List for player 2's blue cards
 
@@ -21,6 +22,7 @@ public class BlueArray : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(BlueCardsInt);
 
     }
 
@@ -42,8 +44,8 @@ public class BlueArray : MonoBehaviour
     // Method to update the card count text 
     private void UpdateCardCount(TextMeshProUGUI cardCountText, List<CardScript> cards)
     {
-        int cardCount = cards.Count; // Get the card count from the blue card list
-        cardCountText.text = cardCount.ToString(); // Update the text 
+        BlueCardsInt = cards.Count; // Get the card count from the blue card list
+        cardCountText.text = BlueCardsInt.ToString(); // Update the text 
     }
 }
 

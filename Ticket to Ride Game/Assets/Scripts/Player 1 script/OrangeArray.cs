@@ -5,6 +5,7 @@ using TMPro;
 
 public class OrangeArray : MonoBehaviour
 {
+    public int OrangeCardsInt;
     public List<CardScript> player1OrangeCards = new List<CardScript>(); // List for player 1's orange cards
     public List<CardScript> player2OrangeCards = new List<CardScript>(); // List for player 2's orange cards
 
@@ -42,8 +43,8 @@ public class OrangeArray : MonoBehaviour
     // Method to update the card count text 
     private void UpdateCardCount(TextMeshProUGUI cardCountText, List<CardScript> cards)
     {
-        int cardCount = cards.Count; // Get the card count from the orange card list
-        cardCountText.text = cardCount.ToString(); // Update the text 
+        OrangeCardsInt = cards.Count; // Get the card count from the orange card list
+        cardCountText.text = OrangeCardsInt.ToString(); // Update the text 
     }
 }
 
