@@ -5,10 +5,13 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using TMPro;
 
-public class OnDragBlue : MonoBehaviour
+public class DragItems : MonoBehaviour
 {
     public Rigidbody2D BlueTrainCard;
-    
+    public Rigidbody2D GreenTrainCard;
+    public Rigidbody2D OrangeTrainCard;
+    public Rigidbody2D PinkTrainCard;
+    public Rigidbody2D RedTrainCard;
     public Rigidbody2D WildCard;
     public BlueArray blueArray;
     public TextMeshProUGUI BlueIntTxt;
